@@ -5,7 +5,7 @@ export const Auth = () => {
     const handleLogin = () => {}
 
     return (
-        <Grid textAlign="center" verticalalign="middle" style={{ height: "100vh" }}>
+        <Grid textAlign="center" verticalAlign="middle" style={{ height: "100vh" }}>
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as="h2" color="violet" textAlign="center">
                     Welcome! Please login by registering as a guest below!
@@ -13,7 +13,8 @@ export const Auth = () => {
                 <Form size="large">
                     <Segment stacked>
                         <Button color="violet" size="large" fluid onClick={handleLogin}>
-                             Login
+                            {" "}
+                            Login
                         </Button>
                     </Segment>
                 </Form>
