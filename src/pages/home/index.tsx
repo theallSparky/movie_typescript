@@ -15,12 +15,12 @@ export const Home = () => {
         DisplayType.Movies
     )
 
-    const { data: movieData, isLoading: isloadingMovies } = useQuery({
+    const { data: movieData, isLoading: isLoadingMovies } = useQuery({
         queryKey: ["movies"],
         queryFn: fetchMovies
     })
 
-    const { data: tvShowData, isLoading: isloadingTvShows } = useQuery({
+    const { data: tvShowData, isLoading: isLoadingTvShows } = useQuery({
         queryKey: ["tvshows"],
         queryFn: fetchTvShows
     })
@@ -43,7 +43,7 @@ export const Home = () => {
                 </Button>
             </Button.Group>
 
-            {isloadingMovies || isloadingTvShows ? (
+            {isLoadingMovies || isLoadingTvShows ? (
                 <div>Loading...</div>
             ) : (
                 <div style={{ marginTop: 20 }}>
