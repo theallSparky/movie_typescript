@@ -3,6 +3,7 @@ import { DisplayType } from ".";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { rateMovie, rateTvShow } from "./mutation";
 
 interface DisplayData {
     id: number;
@@ -23,15 +24,17 @@ export const ColumnDisplay = (props: Props) => {
     const { data, displayType } = props
     const [rating, setRating] = useState<number>(0)
 
-    const {} = useMutation({
+    const { mutate: rateMovieMutation } = useMutation({
         mutationKey: ["rateMovie"],
         mutationFn: (id: number) => rateMovie(id, rating),
     })
 
-    const {} = useMutation({
+    const { mutate: rateTvShowMutation } = useMutation({
         mutationKey: ["rateTvShow"],
         mutationFn: (id: number) => rateTvShow(id, rating),
     })
+
+const rate = displayType === DisplayType.Movies ? rateMovieMutation : rateTvShowMutation
 
     return (
         <Grid
@@ -67,9 +70,7 @@ export const ColumnDisplay = (props: Props) => {
                                         labelPosition: "right",
                                         icon: "star",
                                         content: "Rate",
-                                        onClick: () => {
-                                            console.log(rating)
-                                        }
+                                        onClick: () => rate(displayData.id)
                                     }} />
 
                             </Form.Field>
