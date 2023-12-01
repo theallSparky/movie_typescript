@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { rateMovie, rateTvShow } from "./mutation";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 interface DisplayData {
     id: number;
@@ -24,14 +26,33 @@ export const ColumnDisplay = (props: Props) => {
     const { data, displayType } = props
     const [rating, setRating] = useState<number>(0)
 
+    const onSuccess = () => {
+        toast.success("Successfully rated!", {
+            autoClose: 3000,
+            pauseOnHover: true,
+            draggable: true,
+        })
+    }
+
+    const onError = () => {
+        toast.error("Something went wrong!", {
+            autoClose: 3000,
+            pauseOnHover: true,
+        })
+    }
+
     const { mutate: rateMovieMutation } = useMutation({
         mutationKey: ["rateMovie"],
         mutationFn: (id: number) => rateMovie(id, rating),
+        onSuccess,
+        onError,
     })
 
     const { mutate: rateTvShowMutation } = useMutation({
         mutationKey: ["rateTvShow"],
         mutationFn: (id: number) => rateTvShow(id, rating),
+        onSuccess,
+        onError,
     })
 
 const rate = displayType === DisplayType.Movies ? rateMovieMutation : rateTvShowMutation
