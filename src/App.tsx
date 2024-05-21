@@ -1,16 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Navbar } from './components/navbar'
-import './App.css'
-import { Auth } from './pages/auth'
-import { Home } from './pages/home'
-import { Movie } from './pages/movie'
-import { TvShow } from './pages/tvshow'
-import { Rated } from './pages/rated'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar } from "./components/navbar";
+import ParticleBg from "./components/Particles";
+import "./App.css";
+import { Auth } from "./pages/auth";
+import { Home } from "./pages/home";
+import { Movie } from "./pages/movie";
+import { TvShow } from "./pages/tvshow";
+import { Rated } from "./pages/rated";
 
 function App() {
-
   return (
     <div>
+      <ParticleBg />
       <Router>
         <Navbar />
         <Routes>
@@ -22,7 +23,7 @@ function App() {
         </Routes>
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
